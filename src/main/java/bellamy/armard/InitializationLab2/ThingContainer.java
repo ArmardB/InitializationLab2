@@ -15,6 +15,12 @@ public class ThingContainer {
         ColorfulThing[] colorfulThings = new ColorfulThing[numberOfArguments];
     }
 
+    public ThingContainer(ColorfulThing[] colorList){
+        colorfulThings = colorList;
+    }
+
+
+    // Search Last Index of Container to Check if full
     public boolean isFull(){
         int lastItem = colorfulThings.length - 1;
         if (colorfulThings[lastItem] != null) {
@@ -23,20 +29,59 @@ public class ThingContainer {
             return false;
 
     }
-
+    // Check if container is full & Add Colorful Thing
     public void add(ColorfulThing colorfulThing){
         if (isFull()){
             System.out.println("ThingContainer is full");
         }
         for (int i = 0; i < numberOfArguments; i++){
-            colorfulThings[i] = colorfulThing;
+            if(colorfulThings[i] != null){
+                colorfulThings[i] = colorfulThing;
+            }
+        }
+    }
+
+    // Print Colorful Things To Screen
+    StringBuilder stringbuilder = new StringBuilder();
+
+    for(int i = 0; i < colorfulThings.length; i++){
+        if(colorfulThings[i] != null){
+            stringbuilder.append(colorfulThings[i]);
+        }
+        stringbuilder.append(colorfulThings.getColor());
+    }
+
+    // Create Pop Method
+    public ColorfulThing pop(){
+        ColorfulThing lastItemInIndex = null;
+        for(int i = colorfulThings.length - 1; i >= 0; i--){
+            if (colorfulThings[i] != null) {
+                lastItemInIndex = colorfulThings[i];
+                colorfulThings[i] = null;
+            }
+        }
+        return lastItemInIndex;
+    }
+
+    // Remove Item From Array
+    public ColorfulThing remove(ColorfulThing.ColorTree color){
+        ColorfulThing itemToRemove = null;
+        int counter;
+        if (isFull()){
+            counter = 0;
+        }else {
+            counter = 1;
         }
 
+        for (int i = 0; i < colorfulThings.length - counter; i++){
+            if(colorfulThings[i].getColor().equals(color)){
+                itemToRemove = colorfulThings[i];
+                colorfulThings[i] = null;
+            }
+        }
+        return itemToRemove;
     }
 
-    public static void main(String[] args) {
-        ThingContainer thingContainer1 = new ThingContainer(3);
-        ThingContainer thingContainer2 = new ThingContainer(4);
-        ThingContainer thingContainer3 = new ThingContainer(6);
-    }
+
+
 }
