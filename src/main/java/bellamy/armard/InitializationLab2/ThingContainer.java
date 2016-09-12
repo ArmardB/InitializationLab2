@@ -41,7 +41,7 @@ public class ThingContainer {
         }
     }
 
-    // Print Colorful Things To Screen
+    // Print Colorful Things To Screen - Helped By Adam Kamsheh
     StringBuilder stringbuilder = new StringBuilder();
 
     for(int i = 0; i < colorfulThings.length; i++){
@@ -51,7 +51,7 @@ public class ThingContainer {
         stringbuilder.append(colorfulThings.getColor());
     }
 
-    // Create Pop Method
+    // Create Pop Method - Helped By Adam Kamsheh
     public ColorfulThing pop(){
         ColorfulThing lastItemInIndex = null;
         for(int i = colorfulThings.length - 1; i >= 0; i--){
